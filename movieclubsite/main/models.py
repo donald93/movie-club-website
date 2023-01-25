@@ -8,7 +8,7 @@ class Session(models.Model):
     end_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return "Session" + self.pk
+        return "Session" + str(self.pk)
 
 class CategoryPoll(models.Model):
     open_date = models.DateField()
@@ -16,7 +16,7 @@ class CategoryPoll(models.Model):
     session = models.OneToOneField(Session, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Session" + self.session.pk + " poll"
+        return "Session" + str(self.session.pk) + " poll"
 
 class PollResponses(models.Model):
     category_poll = models.ForeignKey(CategoryPoll, on_delete=models.CASCADE)
@@ -24,7 +24,7 @@ class PollResponses(models.Model):
     response = models.CharField(max_length=2550)
 
     def __str__(self):
-        return "Poll Response Submitted By " + self.submitter + " For Poll " + self.category_poll.pk
+        return "Poll Response Submitted By " + self.submitter.get_username() + " For Poll " + str(self.category_poll.pk)
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
