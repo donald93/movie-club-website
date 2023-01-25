@@ -34,7 +34,7 @@ class Category(models.Model):
     selected = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name + " " + self.description
+        return self.name + ": " + self.description
  
 class Movie(models.Model):
     name = models.CharField(max_length=255)
